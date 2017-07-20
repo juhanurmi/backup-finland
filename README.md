@@ -18,8 +18,10 @@ Simplify, simplify, simplify
 ```sh
 $ time zcat 20170714-fdns.json.gz | cut -d'"' -f 8,16 | sed 's/\"/ /g' > 20170714_dns.txt
 $ python3 print_every_ip.py > 2017-07-18_fi_every_ip.txt
+$ cat fi.zone | cut -d"." -f1,2 | sed 's/\.//g' > short_ip_filter.txt
+# Run tree times:
 $ python3 split_dns_file.py
-# Modify split_dns_file.py and run it again
+$ python3 split_dns_file.py
 $ python3 split_dns_file.py
 ```
 

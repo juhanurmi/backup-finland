@@ -21,8 +21,13 @@ def create_new_line(line, fi_ips_list):
     if len(fi_ips_list) > 0:
         # 188.117.30.83 haku.ahmia.fi
         ip_str, domain = line.split(" ")
-        if not ip_str in fi_ips_list:
-            return ""
+        if len(fi_ips_list[0]) < 7:
+            ip_str = "".join(ip_str.split(".")[0:2])
+            if not ip_str in fi_ips_list:
+                return ""
+        else:
+            if not ip_str in fi_ips_list:
+                return ""
     else:
         # Too long line to be a normal domain address
         if len(line) > 50:
@@ -65,14 +70,24 @@ def extract_fi_ips(input_file, output_file, fi_ips_list):
         w.writelines(bunch)
 
 def main():
-    true_finns = False
-    output_file = "20170714_short_dns.txt"
-    if true_finns:
-        with open("small_ip_range.txt") as file:
-            fi_ips_list = [line.replace('\n', '') for line in file]
-    else:
+    input_file = ""
+    output_file = ""
+    if not os.path.isfile("20170714_short_dns.txt"): # Step 1
+        input_file = "20170714_dns.txt"
+        output_file = "20170714_short_dns.txt"
         fi_ips_list = []
-    extract_fi_ips("20170714_dns.txt", output_file, fi_ips_list)
+    elif not os.path.isfile("20170714_short_prefix_filtered_dns.txt"): # Step 2
+        input_file = "20170714_short_dns.txt"
+        output_file = "20170714_short_prefix_filtered_dns.txt"
+        with open("short_ip_filter.txt") as file:
+            fi_ips_list = [line.replace('\n', '') for line in file]
+    elif not os.path.isfile("20170714_short_only_true_finns.txt"): # Step 3
+        input_file = "20170714_short_prefix_filtered_dns.txt"
+        output_file = "20170714_short_only_true_finns.txt"
+        with open("2017-07-18_fi_every_ip.txt") as file:
+            fi_ips_list = [line.replace('\n', '') for line in file]
+    if input_file and output_file:
+        extract_fi_ips(input_file, output_file, fi_ips_list)
 
 if __name__ == '__main__':
     main()
