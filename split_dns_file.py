@@ -82,11 +82,11 @@ def main():
         output_file = "20170714_short_prefix_filtered_dns.txt"
         with open("short_ip_filter.txt") as file:
             fi_ips_list = [line.replace('\n', '') for line in file]
-    elif not os.path.isfile("20170714_short_only_true_finns.txt"): # Step 3
-        input_file = "20170714_short_prefix_filtered_dns.txt"
-        output_file = "20170714_short_only_true_finns.txt"
-        with open("2017-07-18_fi_every_ip.txt") as file:
-            fi_ips_list = [line.replace('\n', '') for line in file]
+    #elif not os.path.isfile("20170714_short_only_true_finns.txt"): # Step 3
+    #    input_file = "20170714_short_prefix_filtered_dns.txt"
+    #    output_file = "20170714_short_only_true_finns.txt"
+    #    with open("2017-07-18_fi_every_ip.txt") as file:
+    #        fi_ips_list = [line.replace('\n', '') for line in file]
     if input_file and output_file:
         extract_fi_ips(input_file, output_file, fi_ips_list)
 
