@@ -31,6 +31,6 @@ Use masscan script to scan port 80/TCP in Finland
 
 ```sh
 $ sudo scan_80_finland.sh > results.log
-$ tail results.log | cut -d" " -f 6 > 80_results_ip_only.log
+$ cat results.log | cut -d" " -f 6 > 80_results_ip_only.log
 $ bash get_only_fi.sh > 80_fi_domains_ips.log
 ```
