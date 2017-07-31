@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-NEXT_IP="91.153.81.15"
+NEXT_IP="151.105.96.3"
 
 while true
 do

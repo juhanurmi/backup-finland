@@ -34,3 +34,11 @@ $ sudo scan_80_finland.sh > results.log
 $ cat results.log | cut -d" " -f 6 > 80_results_ip_only.log
 $ bash get_only_fi.sh > 80_fi_domains_ips.log
 ```
+
+Look HTTP/HTTPS services
+------------------------
+
+```sh
+$ bash call_http_test.py
+$ ls -l html/ | cut -d":" -f2 | cut -d" " -f2 | cut -d"." -f1,2,3,4 > HTTP_results_ip_only.log
+```
